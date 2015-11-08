@@ -20,6 +20,8 @@ ApplicationWindow {
     ExclusiveGroup { id: languageSettingsGroup }
 
     menuBar: MenuBar {
+        visible: settings.value("showMenu", true)
+
         Menu {
             title: qsTr("File")
             MenuItem {
@@ -41,8 +43,9 @@ ApplicationWindow {
                 shortcut: "Ctrl+M"
                 checkable: true
                 checked: settings.value("showMenu", true)
-                onTriggered: {
-                    settings.setValue("showMenu", !settings.value("showMenu"));
+                onToggled: {
+                    settings.setValue("showMenu", checked);
+                    MenuBar.visible = checked
                 }
             }
             Menu {
