@@ -40,7 +40,7 @@ ApplicationWindow {
                 text: qsTr("Show Menu")
                 shortcut: "Ctrl+M"
                 checkable: true
-                checked: settings.value("showMenu")
+                checked: settings.value("showMenu", true)
                 onTriggered: {
                         settings.setValue("showMenu", settings.value("showMenu"));
                 }
