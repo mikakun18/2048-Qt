@@ -20,7 +20,7 @@ ApplicationWindow {
     ExclusiveGroup { id: languageSettingsGroup }
 
     menuBar: MenuBar {
-        __contentItem.visible: settings.value("showMenu", true)
+        __contentItem.visible: settings.value("showMenu", true) === "true" ? true : false
 
         Menu {
             title: qsTr("File")
@@ -42,7 +42,7 @@ ApplicationWindow {
                 text: qsTr("Show Menu")
                 shortcut: "Ctrl+M"
                 checkable: true
-                checked: settings.value("showMenu", true)
+                checked: settings.value("showMenu", true) === "true" ? true : false
                 onToggled: {
                     settings.setValue("showMenu", checked);
                     menuBar.__contentItem.visible = checked
