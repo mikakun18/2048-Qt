@@ -42,7 +42,7 @@ ApplicationWindow {
                 checkable: true
                 checked: settings.value("showMenu", true)
                 onTriggered: {
-                        settings.setValue("showMenu", settings.value("showMenu"));
+                    settings.setValue("showMenu", !settings.value("showMenu"));
                 }
             }
             Menu {
