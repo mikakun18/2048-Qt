@@ -20,7 +20,9 @@ ApplicationWindow {
     ExclusiveGroup { id: languageSettingsGroup }
 
     menuBar: MenuBar {
-        visible: settings.value("showMenu", true)
+        style {
+            visible: settings.value("showMenu", true)
+        }
 
         Menu {
             title: qsTr("File")
@@ -45,7 +47,7 @@ ApplicationWindow {
                 checked: settings.value("showMenu", true)
                 onToggled: {
                     settings.setValue("showMenu", checked);
-                    MenuBar.visible = checked
+                    MenuBar.visiblility = checked
                 }
             }
             Menu {
@@ -166,9 +168,9 @@ ApplicationWindow {
                     text: "German"
                     checkable: true
                     exclusiveGroup: languageSettingsGroup
-                    checked: settings.value("language") == "de_DE" ?  true : false
+                    checked: settings.value("language") === "de_DE" ?  true : false
                     onTriggered: {
-                        if (settings.value("language") != "de_DE") {
+                        if (settings.value("language") !== "de_DE") {
                             settings.setValue("language", "de_DE");
                             changeLanguageDialog.open();
                         }
