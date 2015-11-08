@@ -20,9 +20,7 @@ ApplicationWindow {
     ExclusiveGroup { id: languageSettingsGroup }
 
     menuBar: MenuBar {
-        style {
-            visible: settings.value("showMenu", true)
-        }
+        __contentItem.visible: settings.value("showMenu", true)
 
         Menu {
             title: qsTr("File")
@@ -47,7 +45,7 @@ ApplicationWindow {
                 checked: settings.value("showMenu", true)
                 onToggled: {
                     settings.setValue("showMenu", checked);
-                    MenuBar.visiblility = checked
+                    menuBar.__contentItem.visible = checked
                 }
             }
             Menu {
