@@ -36,6 +36,15 @@ ApplicationWindow {
 
         Menu {
             title: qsTr("Settings")
+            MenuItem {
+                text: qsTr("Show Menu")
+                shortcut: "Ctrl+M"
+                checkable: true
+                checked: settings.value("showMenu")
+                onTriggered: {
+                        settings.setValue("showMenu", settings.value("showMenu"));
+                }
+            }
             Menu {
                 title: qsTr("Labeling")
                 MenuItem {
