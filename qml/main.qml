@@ -20,6 +20,8 @@ ApplicationWindow {
     ExclusiveGroup { id: languageSettingsGroup }
 
     menuBar: MenuBar {
+        __contentItem.visible: settings.value("showMenu", true) === "true" ? true : false
+
         Menu {
             title: qsTr("File")
             MenuItem {
@@ -39,6 +41,16 @@ ApplicationWindow {
 
         Menu {
             title: qsTr("Settings")
+            MenuItem {
+                text: qsTr("Show Menu")
+                shortcut: "Ctrl+M"
+                checkable: true
+                checked: settings.value("showMenu", true) === "true" ? true : false
+                onToggled: {
+                    settings.setValue("showMenu", checked);
+                    menuBar.__contentItem.visible = checked
+                }
+            }
             Menu {
                 title: qsTr("Labeling")
                 MenuItem {
@@ -157,9 +169,9 @@ ApplicationWindow {
                     text: "German"
                     checkable: true
                     exclusiveGroup: languageSettingsGroup
-                    checked: settings.value("language") == "de_DE" ?  true : false
+                    checked: settings.value("language") === "de_DE" ?  true : false
                     onTriggered: {
-                        if (settings.value("language") != "de_DE") {
+                        if (settings.value("language") !== "de_DE") {
                             settings.setValue("language", "de_DE");
                             changeLanguageDialog.open();
                         }
